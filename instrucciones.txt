@@ -1,0 +1,16 @@
+Crear Login
+    -Crear una tabla para todos los usuarios
+
+Evaluar variables de sesion y permitir accesos dependiendo el tipo
+
+
+Rol Maestro
+
+
+Rol Admin
+
+Rol Alumno
+
+
+
+
