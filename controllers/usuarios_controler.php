@@ -14,6 +14,19 @@ class usuarios_controller{
         $respuesta = $UnUsuario->LeerUnUsuario($correo);
         return $respuesta;
     }
+    
+    public function ValidarContraseña($correo, $contraseña){
+        $UnUsuario = new usuarios_models();
+        $respuesta = $UnUsuario->LeerContraseña($correo);
+        
+        foreach($respuesta as $cada_usuario){
+            if ($contraseña==$cada_usuario["password"]) {
+                return 1;
+            }else{
+                return 0;
+            }
+        }
+    }
 
     public function CrearUsuarios(){}
     

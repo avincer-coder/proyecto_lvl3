@@ -24,6 +24,15 @@
             return $DataUsuarios;
         }
         
+        public function LeerContraseña($correo){
+            $query = $this->con->prepare("SELECT * FROM proyecto_final.usuarios where correo = :correo;");
+            $query -> bindParam(":correo",$correo);
+            $query->execute();
+            
+            $DataUsuarios = $query->fetchAll();
+            return $DataUsuarios;
+        }
+
         public function CrearUsuarios(){}
         
         public function EditarUsuarios(){}
