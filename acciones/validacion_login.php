@@ -10,10 +10,14 @@ if (isset($_POST["correo"])) {
     if ($data_usuario) {
         $validacionContraseña = $usuario_prueba->ValidarContraseña($correo, $password);
         if ($validacionContraseña) {
+            $roll = $usuario_prueba->ObtenerRoll($correo, $password);
             session_start();
-            $_SESSION["usuario"] = "admin";
-            $_SESSION["nombre"] = "admin";
+            $_SESSION["tipo_usuario"] = $roll;
+            $_SESSION["correo"] = $correo;
             header("location:../views/index_admin.php");
+
+
+
         }else{
             echo("Contraseña Incorrecta");
         }

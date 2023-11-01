@@ -2,6 +2,12 @@ Crear Login
     -Crear una tabla para todos los usuarios
 
 Evaluar variables de sesion y permitir accesos dependiendo el tipo
+En sql crear 3 roles
+Modelos deben ser capaces de recivir roles
+Trabajar con la tabla alumnos
+    -Crear funcion mostrar alumnos
+    -Dependiendo el tipo de usuario va a poder editar, leer etc.
+
 
 
 Rol Maestro
