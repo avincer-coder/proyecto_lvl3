@@ -48,6 +48,6 @@ class usuarios_controller{
     
     public function EditarUsuarios(){}
     
-    public function EliminarUsuarios(){}
+    
 }
 ?>
