@@ -8,6 +8,7 @@ Trabajar con la tabla alumnos
     -Crear funcion mostrar alumnos
     -Dependiendo el tipo de usuario va a poder editar, leer etc.
 
+Crear un .gitignore para node_modules
 
 
 Rol Maestro
