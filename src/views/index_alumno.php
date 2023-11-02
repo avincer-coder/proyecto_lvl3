@@ -3,13 +3,13 @@ session_start();
 $tipo_usuario = $_SESSION["tipo_usuario"];
 
 if ($tipo_usuario == "admin") {
-    echo("location:index_admin.php");
+    header("location:index_admin.php");
 }else if($tipo_usuario  == "alumno"){
     echo("Bienvenido alumnooooooo ");
 }else if($tipo_usuario == "maestro"){
     header("location:index_maestro.php");
 }else{
-    echo("Tu tipo de usuario no esta definido");
+    header("location:../index.php");
 }
 ?>
 <!DOCTYPE html>
