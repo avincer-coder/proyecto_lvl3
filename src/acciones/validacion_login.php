@@ -14,7 +14,7 @@ if (isset($_POST["correo"])) {
             session_start();
             $_SESSION["tipo_usuario"] = $roll;
             $_SESSION["correo"] = $correo;
-            header("location:../views/index_admin.php");
+            header("location:../views/dashboard.php");
 
 
 
