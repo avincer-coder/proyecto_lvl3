@@ -9,12 +9,7 @@ class alumnos_controller{
 
     public function __construct(PDO $con)
     {
-
-
-
         $this->con = $con;
-
-
     }
 
 
@@ -27,6 +22,11 @@ class alumnos_controller{
     public function EliminarAlumnos($correo){
         $EliminarUsuario = new alumnos_models($this->con);
         $EliminarUsuario->EliminarAlumnos($correo);
+    }
+    
+    public function AgregarAlumnos($dni,$nombre,$correo,$direccion,$fecha){
+        $AgregarUsuario = new alumnos_models($this->con);
+        $AgregarUsuario->AgregarAlumnoso($dni,$nombre,$correo,$direccion,$fecha);
     }
 }
 ?>
