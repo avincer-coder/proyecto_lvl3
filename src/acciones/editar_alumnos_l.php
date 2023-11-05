@@ -1,6 +1,4 @@
 <?php 
- 
-
 $dni = $_POST["dni"];
 $correo = $_POST["correo"];
 $nombre = $_POST["nombre"];
@@ -13,4 +11,5 @@ require_once "../controllers/alumnos_controller.php";
 require_once "../config/config_admin.php";
 $Alumnos_controller = new alumnos_controller($con);
 $Alumnos_controller->EditarAlumnos($dni,$nombre,$apellido, $correo, $direccion,$fecha);
+header("location:../views/index_admin.php")
 ?>

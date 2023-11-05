@@ -35,5 +35,12 @@ class alumnos_controller{
         echo($actualiazr_alumno);
         echo($correo);
     }
+
+    public function BuscarAlumno($correo)
+    {
+        $BuscarAlumno = new alumnos_models($this->con);
+        $Data = $BuscarAlumno->BuscarAlumno($correo);
+        return $Data;
+    }
 }
 ?>

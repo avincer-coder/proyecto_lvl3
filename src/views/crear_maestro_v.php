@@ -32,24 +32,24 @@ switch($tipo_usuario){
     <title>Document</title>
 </head>
 <body> 
-    <form action="../acciones/agregar_alumnos_l.php " method="post">
-        <label for="dni">DNI</label>
-        <input name="dni" id="dni" type="number">
+    <form action="../acciones/agregar_maestros_l.php " method="post">
+        <label for="email">Correo Electronico</label>
+        <input name="email" id="email" type="email">
 
-        <label for="correo">Correo Electronico</label>
-        <input name="correo" id="correo" type="email">
-        
         <label for="nombre">Nombre(s)</label>
         <input name="nombre" id="nombre" type="text">
-
+        
         <label for="apellido">Apellido(s)</label>
-        <input name="apellido" type="text">
+        <input name="apellido" id="apellido" type="text">
 
-        <label for="direccion">Direccion</label>
+        <label for="direccion">Dirección</label>
         <input name="direccion" id="direccion" type="text">
 
-        <label for="fecha">Fecha de nacimiento</label>
+        <label for="fecha">Fecha de Nacimiento</label>
         <input name="fecha" id="fecha" type="date">
+
+        <label for="clase">Clase Asignada</label>
+        <input name="clase" id="clase" type="text">
         <input type="submit">
     </form>
     

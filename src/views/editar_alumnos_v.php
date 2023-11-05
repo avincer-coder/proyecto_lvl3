@@ -1,3 +1,12 @@
+<?php 
+require_once "../controllers/alumnos_controller.php";
+require_once "../config/config_alumno.php";
+$controller_alumno = new alumnos_controller($con);
+$correo = $_POST["input_correo"];
+$Alumno = $controller_alumno->BuscarAlumno($correo);
+echo($Alumno[0]["correo"]);
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,22 +17,22 @@
 <body>
     <form action="../acciones/editar_alumnos_l.php" method="post">
         <label for="dni">DNI</label>
-        <input name="dni" id="dni" type="number">
+        <input value="<?php echo($Alumno[0]["DNI"]); ?>" name="dni" id="dni" type="number">
 
         <label for="correo">Correo Electronico</label>
-        <input name="correo" id="correo" type="email">
+        <input value="<?php echo($Alumno[0]["correo"]); ?>" name="correo" id="correo" type="email">
         
         <label for="nombre">Nombre(s)</label>
-        <input name="nombre" id="nombre" type="text">
+        <input value="<?php echo($Alumno[0]["nombre"]); ?>" name="nombre" id="nombre" type="text">
 
         <label for="apellido">Apellido(s)</label>
-        <input name="apellido" type="text">
+        <input value="<?php echo($Alumno[0]["apellido"]); ?>" name="apellido" type="text">
 
         <label for="direccion">Direccion</label>
-        <input name="direccion" id="direccion" type="text">
+        <input value="<?php echo($Alumno[0]["direccion"]); ?>" name="direccion" id="direccion" type="text">
 
         <label for="fecha">Fecha de nacimiento</label>
-        <input name="fecha" id="fecha" type="date">
+        <input value="<?php echo($Alumno[0]["fecha"]); ?>" name="fecha" id="fecha" type="date">
         <input type="submit">
     </form>
 </body>
