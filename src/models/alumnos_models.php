@@ -24,14 +24,32 @@
             return $DataAlumnos;
         }
         
-        public function AgregarAlumnoso($dni,$nombre,$correo,$direccion,$fecha){
+        public function AgregarAlumnoso($dni,$nombre, $apellido,$correo,$direccion,$fecha){
             $query = $this->con->prepare("INSERT INTO alumnos
-            (DNI, nombre, correo, direccion, fecha)
-            VALUES('?', '?', '?', '?', '?')");
+            (DNI, nombre, apellido, correo, direccion, fecha)
+            VALUES(?, ?, ?, ?, ?, ?)");
             
-            $query->execute(array($dni,$nombre,$correo,$direccion,$fecha));
+            $query->execute(array($dni,$nombre, $apellido,$correo,$direccion,$fecha));
             // $DataAlumnos = $query->rowCount();
             // return $DataAlumnos;
+        
+        }
+        public function EditarAlumnos($dni,$nombre, $apellido,$correo,$direccion,$fecha){
+            $query = $this->con->prepare("UPDATE alumnos
+            SET DNI=?, nombre=?, apellido=?, direccion=?, fecha=? 
+            WHERE correo=?");
+
+            $query->execute(array($dni,$nombre,$apellido,$direccion,$fecha,$correo));
+            $email = "b@b";
+            // $query = $this->con->prepare("UPDATE proyecto_final.alumnos
+            // SET DNI=703070, nombre='bbbb', direccion='bbb', fecha='2023-11-11', apellido='bbb'
+            // WHERE correo=?");
+            // echo($correo);
+
+            
+            // $query->execute(array($correo));
+            $DataAlumnos = $query->rowCount();
+            return $DataAlumnos;
         }
     };
 

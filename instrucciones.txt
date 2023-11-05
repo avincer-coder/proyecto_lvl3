@@ -19,8 +19,9 @@ Rol Admin
 Rol Alumno
 
 yo
-Crear tabla como alumnos hno de las demas pero de maestros
+LISTO Crear tabla como alumnos hno de las demas pero de maestros 
 Copiar clases de alumno para modelo y controlador, editar el query alumnos_models para usar ese mismo pero para maestros cambiar solo el query y probar la vista para ver la tabla.
+
 Tailwind
 
 mañana
