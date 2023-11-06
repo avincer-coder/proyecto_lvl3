@@ -43,11 +43,22 @@ class usuarios_controller{
         }
     }
 
-
     public function CrearUsuarios(){}
     
-    public function EditarUsuarios(){}
-    
+    public function EditarUsuario($correo,$nombre,$password,$apellido,$direccion,$fecha_nacimiento)
+    {
+        $UnUsuario = new usuarios_models();
+        $actualiazr_alumno = $UnUsuario->EditarUsuarios($correo,$nombre,$password,$apellido,$direccion,$fecha_nacimiento);
+        echo($actualiazr_alumno);
+        echo($correo);
+    }
+
+    public function BuscarUsuario($correo)
+    {
+        $usuario = new usuarios_models();
+        $Data = $usuario->BuscarUsuario($correo);
+        return $Data;
+    }
     
 }
 ?>

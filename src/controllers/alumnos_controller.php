@@ -5,41 +5,48 @@ require_once "../models/alumnos_models.php";
 class alumnos_controller{
     
     public $con;
-        
+    public $alumno;
 
     public function __construct(PDO $con)
     {
         $this->con = $con;
+        $alumno = new alumnos_models($this->con);
+        $this->alumno = $alumno;
     }
 
 
-    public function LeerAlumnos(){
-        $alumno = new alumnos_models($this->con);
-        $datos = $alumno->LeerAlumnos();
+    public function LeerAlumnos()
+    {
+        $datos = $this->alumno->LeerAlumnos();
+        return $datos;
+    }
+    
+    public function LeerClaseAlumnos()
+    {
+        $datos = $this->alumno->LeerClaseAlumnos();
         return $datos;
     }
 
-    public function EliminarAlumnos($correo){
-        $EliminarUsuario = new alumnos_models($this->con);
-        $EliminarUsuario->EliminarAlumnos($correo);
+    public function EliminarAlumnos($correo)
+    {
+        $this->alumno->EliminarAlumnos($correo);
     }
     
-    public function AgregarAlumnos($dni,$nombre, $apellido, $correo,$direccion,$fecha){
-        $AgregarUsuario = new alumnos_models($this->con);
-        $AgregarUsuario->AgregarAlumnoso($dni,$nombre, $apellido, $correo,$direccion,$fecha);
+    public function AgregarAlumnos($dni,$nombre, $apellido, $correo,$direccion,$fecha)
+    {
+        $this->alumno->AgregarAlumnoso($dni,$nombre, $apellido, $correo,$direccion,$fecha);
     }
     
-    public function EditarAlumnos($dni,$nombre, $apellido, $correo,$direccion,$fecha){
-        $EditarAlumnos = new alumnos_models($this->con);
-        $actualiazr_alumno = $EditarAlumnos->EditarAlumnos($dni,$nombre, $apellido, $correo,$direccion,$fecha);
+    public function EditarAlumnos($dni,$nombre, $apellido, $correo,$direccion,$fecha)
+    {
+        $actualiazr_alumno = $this->alumno->EditarAlumnos($dni,$nombre, $apellido, $correo,$direccion,$fecha);
         echo($actualiazr_alumno);
         echo($correo);
     }
 
     public function BuscarAlumno($correo)
     {
-        $BuscarAlumno = new alumnos_models($this->con);
-        $Data = $BuscarAlumno->BuscarAlumno($correo);
+        $Data = $this->alumno->BuscarAlumno($correo);
         return $Data;
     }
 }

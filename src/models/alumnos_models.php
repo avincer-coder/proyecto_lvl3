@@ -13,6 +13,14 @@
             $DataUsuarios = $query->fetchAll();
             return $DataUsuarios;
         }
+        
+        public function LeerClaseAlumnos()
+        {
+            $query = $this->con->prepare("SELECT * FROM clase_guarani_view;");
+            $query->execute();
+            $Data = $query->fetchAll();
+            return $Data;
+        }
 
         public function EliminarAlumnos($correo){
             $query = $this->con->prepare("DELETE FROM alumnos
@@ -49,6 +57,7 @@
             $DataAlumnos = $query->fetchAll();
             return $DataAlumnos;
         }
+        
     };
 
 
