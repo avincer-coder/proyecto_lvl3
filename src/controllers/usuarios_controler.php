@@ -43,6 +43,20 @@ class usuarios_controller{
         }
     }
 
+    public function ObtenerNombre($correo, $contraseña){
+        $UnUsuario = new usuarios_models();
+        $respuesta = $UnUsuario->LeerContraseña($correo);
+        
+        foreach($respuesta as $cada_usuario){
+            if ($contraseña==$cada_usuario["password"]) {
+                $nombre = $cada_usuario["nombre"];
+                return $nombre;
+            }else{
+                return 0;
+            }
+        }
+    }
+
     public function CrearUsuarios(){}
     
     public function EditarUsuario($correo,$nombre,$password,$apellido,$direccion,$fecha_nacimiento)

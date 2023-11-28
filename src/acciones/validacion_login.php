@@ -11,9 +11,12 @@ if (isset($_POST["correo"])) {
         $validacionContraseña = $usuario_prueba->ValidarContraseña($correo, $password);
         if ($validacionContraseña) {
             $roll = $usuario_prueba->ObtenerRoll($correo, $password);
+            $nombre = $usuario_prueba->ObtenerNombre($correo, $password);
             session_start();
+            $_SESSION["nombre"] = $nombre;
             $_SESSION["tipo_usuario"] = $roll;
             $_SESSION["correo"] = $correo;
+          
             header("location:../views/dashboard.php");
 
 
