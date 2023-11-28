@@ -51,6 +51,7 @@ $datos_alumnos = $alumnos_controller->LeerAlumnos();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="/dist/output.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/3a6e8db9a7.js" crossorigin="anonymous"></script>
     <title>Document</title>
 </head>
 <body >
@@ -96,14 +97,14 @@ $datos_alumnos = $alumnos_controller->LeerAlumnos();
                                     name="input_correo"
                                     value="<?=$dato_alumno["correo"] ?>" 
                                     type="hidden">
-                                <input type="submit">
+                                <button><i class="fa-solid fa-pen-to-square" style="color: #48f000;"></i></button>
                             </form>
                             <form method="post" action="eliminar_alumnos.php">
                                 <input 
                                     name="input_correo"
                                     value="<?=$dato_alumno["correo"] ?>" 
                                     type="hidden">
-                                <input type="submit">
+                                <button><i class="fa-solid fa-trash-can" style="color: #ff0a0a;"></i></button>
                             </form>
 
                         </td>

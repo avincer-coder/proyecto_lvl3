@@ -36,7 +36,7 @@ $buscar_usuario = $copia_clase->BuscarUsuario($correoDos);
         <label for="fecha_nacimiento">Fecha de Nacimiento:</label>
         <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" value="<?php echo $buscar_usuario[0]["fecha_nacimiento"] ?>"><br>
 
-        <input type="submit" value="Registrar">
+        <input type="submit" value="Editar">
     </form>
 </body>
 </html>

@@ -49,5 +49,22 @@ class alumnos_controller{
         $Data = $this->alumno->BuscarAlumno($correo);
         return $Data;
     }
+
+    public function BuscarMaterias($correo)
+    {
+        $Data = $this->alumno->AlumnoClases($correo);
+        return $Data;
+    }
+
+    public function EliminarMateria($id)
+    {
+        $this->alumno->EliminarMateria($id);
+    }
+
+    public function AgregarClaseAlumno($alumno, $materia)
+    {
+        $this->alumno->AgregarClaseAlumno($alumno, $materia);
+    }
+
 }
 ?>

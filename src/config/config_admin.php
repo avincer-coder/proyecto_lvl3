@@ -1,5 +1,5 @@
 <?php 
-
+//Este usuario tiene todos los permisos
 $host = "localhost";
 $dbname = "proyecto_final";
 $usuario = "root";

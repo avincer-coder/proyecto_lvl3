@@ -4,7 +4,6 @@ require_once "../config/config_alumno.php";
 $controller_alumno = new alumnos_controller($con);
 $correo = $_POST["input_correo"];
 $Alumno = $controller_alumno->BuscarAlumno($correo);
-echo($Alumno[0]["correo"]);
 
 ?>
 <!DOCTYPE html>

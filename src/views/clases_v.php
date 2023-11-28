@@ -30,13 +30,7 @@ $alumnos_view = $alumnos_controler->LeerClaseAlumnos();
                         <td><?= $dato_alumno["calificacion"] ?></td>
                         <td><?= $dato_alumno["mensaje"] ?></td>
                         <td>
-                            <form method="post" action="editar_clase_alumnos.php">
-                                <input 
-                                    name="input_correo"
-                                    value="<?=$dato_alumno["nombre_alumno"] ?>" 
-                                    type="hidden">
-                                <input type="submit">
-                            </form>
+                            <i>ICONOS</i>
                         </td>
                     </tr>
                 <?php endforeach;?>

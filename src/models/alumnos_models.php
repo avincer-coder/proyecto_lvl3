@@ -38,6 +38,7 @@
             
             $query->execute(array($dni,$nombre, $apellido,$correo,$direccion,$fecha));
         }
+
         public function EditarAlumnos($dni,$nombre, $apellido,$correo,$direccion,$fecha){
             $query = $this->con->prepare("UPDATE alumnos
             SET DNI=?, nombre=?, apellido=?, direccion=?, fecha=? 
@@ -57,7 +58,34 @@
             $DataAlumnos = $query->fetchAll();
             return $DataAlumnos;
         }
+
+        public function AlumnoClases($correo){
+            $query = $this->con->prepare("SELECT * FROM alumnos_materia_view
+            WHERE correo=:correo;");
+            $query -> bindParam(":correo",$correo);
+            $query->execute();
+            $Data = $query->fetchAll();
+            return $Data;
+        }
+
+        public function EliminarMateria($id){
+            $query = $this->con->prepare("DELETE FROM alumno_materias
+            WHERE id=:id;");
+            $query -> bindParam(":id",$id);
+            $query->execute();
+            $Data = $query->rowCount();
+            return $Data;
+        }
+
+        public function AgregarClaseAlumno($alumno, $materia){
+            $query = $this->con->prepare("INSERT INTO alumno_materias
+            (alumno, materia)
+            VALUES(?, ?)");
+            
+            $query->execute(array($alumno, $materia));
+        }
         
+        // public function BuscarAlumnoClase();
     };
 
 

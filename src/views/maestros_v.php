@@ -47,6 +47,7 @@ $datos_maestros = $maestros_controller->LeerMaestros();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="/dist/output.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/3a6e8db9a7.js" crossorigin="anonymous"></script>
     <title>Document</title>
 </head>
 <body >
@@ -93,7 +94,7 @@ $datos_maestros = $maestros_controller->LeerMaestros();
                                     name="input_correo"
                                     value="<?=$dato_maestro["email"] ?>" 
                                     type="hidden">
-                                <input type="submit">
+                                <button><i class="fa-solid fa-pen-to-square" style="color: #48f000;"></i></button>
                             </form>
                 
 

@@ -1,4 +1,5 @@
 <?php 
+//Este usario es de solo lectura
 $host = "localhost";
 $dbname = "proyecto_final";
 $usuario = "abc";
