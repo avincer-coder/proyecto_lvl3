@@ -16,8 +16,9 @@ $LeerMaterias = $controller_materias->LeerMaterias();
 $Materias = $controller_alumno->BuscarMaterias($correo);
 $data_alumno = $controller_alumno->BuscarAlumno($correo);
 // Aqui si no hay materias produce error
+
 $indice_materia = 0;
-$id_alumno = $data_alumno[0]["DNI"];
+$id_alumno = $data_alumno[0]['DNI'];
 
 // if(count($Materias)==0){
 //     $id_alumno=0;
@@ -61,10 +62,10 @@ for ($y=0; $y < count($LeerMaterias); $y++) {
     <link href="../../dist/output.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/3a6e8db9a7.js" crossorigin="anonymous"></script>
 </head>
-<body class="">
+<body class="flex">
 
 
-    <header>
+    <!-- <header>
         <?php echo($editar_perfil) ?>
     </header>
     <aside>
@@ -76,32 +77,42 @@ for ($y=0; $y < count($LeerMaterias); $y++) {
             <?php echo($menu) ?>
         </nav>
         <a href="../acciones/cerrar_session.php">Cerrar Sesion</a>
+    </aside> -->
+
+    <aside class="h-screen bg-[#353a40] text-[#b8c4d4] w-[220px] shadow-lg shadow-gray-950/50">
+        <section class=" pl-[20px] py-[15px] flex border-b-[1px] border-solid border-[#b8c4d4]">
+            <img class="shadow-lg shadow-gray-950/50 w-[40px] rounded-[50%]" src="../img/logo_dos.jpg" alt="logo">
+            <h1 class="pl-[10px] text-base flex items-center">Universidad</h1>
+        </section>
+        <section class="p-[20px]">
+            <h2 class="text-lg pb-[10px]"><?php echo($html_roll) ?></h2>
+            <h2 class="text-xs"><?php echo($titulo_menu)?></h2>
+        </section>
+        <div class="mx-[10px] h-[2px] border-b-[1px] border-solid border-[#b8c4d4]"></div>
+        <h1 class="text-xs mb-[20px] mt-[30px] w-[100%] flex justify-center"><?php echo($menu_administracion)?></h1>  
+        <nav class="flex flex-col px-[20px]">
+            <?php echo($menu) ?>
+        </nav>
+        <a class="flex justify-center" href="../acciones/cerrar_session.php">Cerrar Sesion</a>
     </aside>
 
-
-
-
-
-
-<table>
+    <main  class="ml-[20px]">
+        <h1 class="text-2xl font-semibold">Esquema de Clases</h1>
+        <table class="pl-[10px] shadow-lg shadow-gray-950/50 ">
             <thead>
                 <tr>
-                    <td>#</td>
-                    <td>Materia</td>
-                    <td>Darse de baja</td>
+                    <td class="w-[50px] pl-[10px] font-bold text-sm border-[1px] border-solid border-[#c0c5cb]">#</td>
+                    <td class="w-[280px] pl-[10px] font-bold text-sm border-[1px] border-solid border-[#c0c5cb]">Materia</td>
+                    <td class="w-[280px] pl-[10px] font-bold text-sm border-[1px] border-solid border-[#c0c5cb]">Darse de baja</td>
                 </tr>
             </thead>
             <tbody>
                 <?php foreach($Materias as $dato_alumno):?>
                     
-<tr class="<?= $indice_materia % 2 === 0 ? 'bg-sky-500 ' : 'bg-white' ?>">
-
-                    
-
-
-                        <td><?php $indice_materia++; echo $indice_materia; ?></td>
-                        <td><?= $dato_alumno["nombre_materia"] ?></td>
-                        <td>
+                        <tr class="<?= $indice_materia % 2 === 0 ? 'bg-zinc-200 ' : 'bg-white' ?>">
+                        <td class=" pl-[10px] border-[1px] border-solid border-[#c0c5cb]"><?php $indice_materia++; echo $indice_materia; ?></td>
+                        <td class=" pl-[10px] border-[1px] border-solid border-[#c0c5cb]"><?= $dato_alumno["nombre_materia"] ?></td>
+                        <td class="flex justify-center pl-[10px] border-[1px] border-solid border-[#c0c5cb]">
                             <form action="../acciones/eliminar_materia_l.php" method="post">
                                 <input name="id_materia" 
                                 value="<?= $dato_alumno["am_id"] ?>" type="hidden">
@@ -113,27 +124,23 @@ for ($y=0; $y < count($LeerMaterias); $y++) {
                     </tr>
                 <?php endforeach;?>
             </tbody>
+        
         </table>
+    </main>
 
 
 
 
 
-
-
-
-
-        <section>
-
+        <section class="border-[1px] border-solid border-[#c0c5cb] rounded ml-[100px] mt-[50px] flex flex-col items-center justify-center shadow-lg shadow-gray-950/50 h-[50vh]  w-[500px] rounded">
+            <h1 class="text-2xl font-semibold">Materias para inscribir</h1>
+            <p class=" pl-[10px] font-bold text-sm">Seleciona una clase y presiona inscribir</p>
             <?php 
                 if(count($MateriasFaltantes)==0){?>
                     <p>Ya estas inscrito a todas las clases</p>    
                 <?php }else{ ?>
-                    
-
-
-                    <form action="../acciones/agregar_clase_l.php" method="post">
-                        <select size="<?php echo(count($MateriasFaltantes))?>" name="clases" id="">
+                    <form class="w-[300px]" action="../acciones/agregar_clase_l.php" method="post">
+                        <select class="w-[300px] border-[1px] border-solid border-[#c0c5cb] rounded" size="<?php echo(count($MateriasFaltantes))?>" name="clases" id="">
                         <?php foreach($MateriasFaltantes as $materia):?>
                         <option 
                             value="<?= $materia["id"] ?>">
@@ -141,21 +148,9 @@ for ($y=0; $y < count($LeerMaterias); $y++) {
                         </option>
                         <?php endforeach;?>
                         </select>
-                        <input type="hidden" value="<?php echo($id_alumno) ?>" name="id_alumno">
-                        <input value="Inscribirse" type="submit">
+                        <input   type="hidden" value="<?php echo($id_alumno) ?>" name="id_alumno">
+                        <input class="hover:bg-[#0062cc] cursor-pointer my-[10px] bg-[#007aff] text-white w-[150px] h-[30px] rounded text-xs" value="Inscribirse" type="submit">
                     </form>
-
-
-
-
-
-
-
-
-
-
-
-
             <?php    }
             ?>        
 

@@ -57,6 +57,7 @@ switch($tipo_usuario){
         $html_roll = "<p>Soy Alumno</p>";
         $menu = $link_ver_calificaiones . $link_administra_clases;
         $editar_perfil = "<a href='editar_perfil_alumno.php'>Perfil</a>";
+        $menu_administracion="";
     break;
     
     case "maestro":
@@ -64,6 +65,7 @@ switch($tipo_usuario){
         $html_roll = "<p>Soy maestro</p>";
         $menu = $link_clases_maestro;
         $editar_perfil = "<a href='editar_perfil_maestro_v.php'>Perfil</a>";
+        $menu_administracion="";
     break;
 
     default:

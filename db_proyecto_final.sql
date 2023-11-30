@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-11-2023 a las 19:07:19
+-- Tiempo de generación: 30-11-2023 a las 19:00:01
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -42,7 +42,8 @@ CREATE TABLE `alumnos` (
 
 INSERT INTO `alumnos` (`DNI`, `nombre`, `correo`, `direccion`, `fecha`, `apellido`) VALUES
 (1, 'a', 'a@a', 'a', '2023-11-08', 'a'),
-(2, 'b', 'b@b', 'b', '2023-02-02', 'b');
+(2, 'b', 'b@b', 'b', '2023-02-02', 'b'),
+(3, 'alumno', 'alumno@alumno', 'los cisnes', '2022-02-02', 'estudiante');
 
 -- --------------------------------------------------------
 
@@ -83,7 +84,8 @@ INSERT INTO `alumno_materias` (`alumno`, `materia`, `id`) VALUES
 (1, 3, 43),
 (2, 2, 45),
 (2, 3, 47),
-(2, 4, 49);
+(2, 4, 49),
+(3, 6, 69);
 
 -- --------------------------------------------------------
 
@@ -102,7 +104,9 @@ CREATE TABLE `clase_guarani` (
 --
 
 INSERT INTO `clase_guarani` (`nombre_alumno`, `calificacion`, `mensaje`) VALUES
-(1, '5', 'holaaaa');
+(1, '5', 'holaaaa'),
+(2, '7', 'Esfuerzate mas'),
+(3, '10', 'Buen trabajo');
 
 -- --------------------------------------------------------
 
@@ -178,7 +182,13 @@ INSERT INTO `materias` (`ID`, `materia`) VALUES
 (1, 'Biomedicina'),
 (2, 'Ciencias básicas'),
 (3, 'Geografia'),
-(4, 'Idiomas');
+(4, 'Idiomas'),
+(5, 'Botanica'),
+(6, 'Fisica'),
+(7, 'Español'),
+(8, 'Mecanica'),
+(9, 'Taller 1'),
+(10, 'Programacion');
 
 -- --------------------------------------------------------
 
@@ -202,10 +212,10 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`correo`, `nombre`, `password`, `roll`, `apellido`, `direccion`, `fecha_nacimiento`) VALUES
 ('a@a', 'a', 'a', 'alumno', 'a', 'a', '2023-01-01'),
-('admin@admin', 'admin', 'a', 'admin', NULL, NULL, NULL),
-('alumno@alumno', 'alumno', 'mmm', 'alumno', NULL, NULL, NULL),
+('admin@admin', 'admin', 'admin', 'admin', NULL, NULL, NULL),
+('alumno@alumno', 'alumno', 'alumno', 'alumno', NULL, NULL, NULL),
 ('b@b', 'b', 'b', 'alumno', 'b', 'b', '2023-02-02'),
-('maestro@maestro', 'El master', 'a', 'maestro', 'a', 'a', '2023-02-02');
+('maestro@maestro', 'El master', 'maestro', 'maestro', 'a', 'a', '2023-02-02');
 
 -- --------------------------------------------------------
 
@@ -276,13 +286,13 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `alumno_materias`
 --
 ALTER TABLE `alumno_materias`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
 
 --
 -- AUTO_INCREMENT de la tabla `materias`
 --
 ALTER TABLE `materias`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Restricciones para tablas volcadas

@@ -18,9 +18,7 @@ require_once "../menu/menu.php";
     <title>Administrador</title>
 </head>
 <body class="flex">
-    <header>
-        <?php echo($editar_perfil) ?>
-    </header>
+    
     <aside class="h-screen bg-[#353a40] text-[#b8c4d4] w-[220px] shadow-lg shadow-gray-950/50">
         <section class=" pl-[20px] py-[15px] flex border-b-[1px] border-solid border-[#b8c4d4]">
             <img class="shadow-lg shadow-gray-950/50 w-[40px] rounded-[50%]" src="../img/logo_dos.jpg" alt="logo">
@@ -35,7 +33,7 @@ require_once "../menu/menu.php";
         <nav class="flex flex-col px-[20px]">
             <?php echo($menu) ?>
         </nav>
-        <a href="../acciones/cerrar_session.php">Cerrar Sesion</a>
+        <a class="flex justify-center" href="../acciones/cerrar_session.php">Cerrar Sesion</a>
     </aside>
     <main class="fle">
         <article class="pr-[5px] pl-[25px] shadow-lg shadow-gray-950/50 w-[85vw] flex justify-between h-[35px] mb-[30px]">
@@ -43,7 +41,12 @@ require_once "../menu/menu.php";
                 <i class="fa-solid fa-grip-lines" style=" display: flex;color: #b8c4d4;align-items: center;"></i>
                 <p class="text-[#b8c4d4] ml-[25px]">Home</p>
             </section>
-            <i class="flex items-center fa-solid fa-chevron-down" style="  display: flex;color: #b8c4d4; align-items: center;"></i>
+            <p class="flex items-center justify-center my-[10px] hover:bg-[#404347] cursor-pointer bg-[#6c747f] text-white w-[100px] h-[30px] rounded text-xs mr-[10px]">-
+                <?php echo($editar_perfil) ?>
+                        -
+                <i class="flex items-center fa-solid fa-chevron-down" style="  display: flex;color: #b8c4d4; align-items: center;"></i>
+            </p>
+            
         </article>
         <article class="pl-[10px]">
             <h1 class="text-2xl font-semibold">Dashboard</h1>

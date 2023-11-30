@@ -15,6 +15,6 @@
         <i class="fa-solid fa-circle-exclamation" style="color: #000000; font-size: 50px"></i>
     </main>
     <p>¡ERROR!</p>
-    <a class="hover:bg-[#0062cc] cursor-pointer my-[10px] bg-[#007aff] text-white w-[90px] h-[30px] rounded flex items-center justify-center" href="../views/dashboard.php">Volver</a>
+    <a class="hover:bg-[#0062cc] cursor-pointer my-[10px] bg-[#007aff] text-white w-[90px] h-[30px] rounded flex items-center justify-center" href="../views/administra_clases_v.php">Volver</a>
 </body>
 </html>

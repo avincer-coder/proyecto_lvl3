@@ -40,6 +40,7 @@ require_once "../config/config_alumno.php";
 require_once "../menu/menu.php";
 $maestros_controller = new maestros_controller($con);
 $datos_maestros = $maestros_controller->LeerMaestros();
+$indice=0;
 ?>
 
 <!DOCTYPE html>
@@ -68,32 +69,40 @@ $datos_maestros = $maestros_controller->LeerMaestros();
         <nav class="flex flex-col px-[20px]">
             <?php echo($menu) ?>
         </nav>
-        <a href="../acciones/cerrar_session.php">Cerrar Sesion</a>
+        <a class="flex justify-center" href="../acciones/cerrar_session.php">Cerrar Sesion</a>
     </aside>
-
-        <main>
-            <a href="crear_maestro_v.php">Agregar Maestro</a>
-        <table>
+        <main class="ml-[20px]">
+            <h1 class="text-2xl font-semibold">Lista de Maestros</h1>  
+        <table class="pl-[10px] shadow-lg shadow-gray-950/50 ">
+            <div class="flex justify-between items-center">
+                <h2>Informacion de Maestros</h2>
+                <a class="hover:bg-[#0062cc] cursor-pointer my-[10px] bg-[#007aff] text-white w-[110px] h-[30px] rounded text-xs flex items-center justify-center" href="crear_maestro_v.php">Agregar Maestro</a>
+            </div >
             <thead>
                 <tr>
                     <!-- <td>#</td> -->
-                    <td>Nombre</td>
-                    <td>Email</td>
-                    <td>Direccion</td>
-                    <td>Fecha</td>
-                    <td>Clase</td>
-                    <td>Acciones</td>
+                    <td class="w-[100px] pl-[10px] font-bold text-sm border-[1px] border-solid border-[#c0c5cb]">#</td>
+                    <td class="w-[230px] pl-[10px] font-bold text-sm border-[1px] border-solid border-[#c0c5cb]">Nombre</td>
+                    <td class="w-[200px] pl-[10px] font-bold text-sm border-[1px] border-solid border-[#c0c5cb]">Email</td>
+                    <td class="w-[200px] pl-[10px] font-bold text-sm border-[1px] border-solid border-[#c0c5cb]">Direccion</td>
+                    <td class="w-[200px] pl-[10px] font-bold text-sm border-[1px] border-solid border-[#c0c5cb]">Fec. de Nacimiento</td>
+                    <td class="w-[200px] pl-[10px] font-bold text-sm border-[1px] border-solid border-[#c0c5cb]">Clase Asignada</td>
+                    <td class="w-[150px] pl-[10px] font-bold text-sm border-[1px] border-solid border-[#c0c5cb]">Acciones</td>
                 </tr>
             </thead>
             <tbody>
                 <?php foreach($datos_maestros as $dato_maestro):?>
-                    <tr>
-                        <td><?= $dato_maestro["nombre"] ?></td>
-                        <td><?= $dato_maestro["email"] ?></td>
-                        <td><?= $dato_maestro["direccion"] ?></td>
-                        <td><?= $dato_maestro["fecha"] ?></td>
-                        <td><?= $dato_maestro["clase"] ?></td>
-                        <td>
+                    <!-- Copiar y pegar tr y td para la tabla y crear variable indice en la logica en cero 0 -->
+                    <tr class=" <?= $indice % 2 === 0 ? 'bg-zinc-200 ' : 'bg-white' ?>">
+
+                        <td  class=" pl-[10px] border-[1px] border-solid border-[#c0c5cb]"><?php $indice++; echo $indice; ?></td>
+
+                        <td class="pl-[10px] border-[1px] border-solid border-[#c0c5cb]"><?= $dato_maestro["nombre"] ?></td>
+                        <td class="pl-[10px] border-[1px] border-solid border-[#c0c5cb]"><?= $dato_maestro["email"] ?></td>
+                        <td class="pl-[10px] border-[1px] border-solid border-[#c0c5cb]"><?= $dato_maestro["direccion"] ?></td>
+                        <td class="pl-[10px] border-[1px] border-solid border-[#c0c5cb]"><?= $dato_maestro["fecha"] ?></td>
+                        <td class="pl-[10px] border-[1px] border-solid border-[#c0c5cb]"><?= $dato_maestro["clase"] ?></td>
+                        <td class="pl-[10px] border-[1px] border-solid border-[#c0c5cb] flex justify-center">
                             <form method="post" action="editar_maestros_v.php">
                                 <input 
                                     name="input_correo"
@@ -109,6 +118,5 @@ $datos_maestros = $maestros_controller->LeerMaestros();
             </tbody>
         </table>
         </main>
-    </div>
 </body>
 </html>
