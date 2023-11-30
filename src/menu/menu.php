@@ -1,25 +1,55 @@
 <?php 
 // Links de views y navegadores
-$link_permisos = "<a href='permisos_v.php'>Permisos</a>";
-$link_maestros = "<a href='maestros_v.php'>Maestros</a>";
-$link_alumnos = "<a href='index_alumno.php'>Alumnos</a>";
-$link_admin = "<a href='index_admin.php'>Asministrador</a>";
-$link_clases = "<a href='clases_v.php'>Clases</a>";
+$link_permisos = 
+"
+<div class='pb-[20px]'>
+    <i class='fa-solid fa-user-lock' style='color: #b8c4d4;'></i>
+    <a class='ml-[10px]' href='permisos_v.php'>Permisos</a>
+</div>
+";
+
+$link_maestros = 
+"
+<div class='pb-[20px]'>
+    <i class='fa-solid fa-chalkboard-user' style='color: #b8c4d4;'></i>
+    <a class='ml-[10px]' href='maestros_v.php'>Maestros</a>
+</div>
+";
+
+$link_alumnos = 
+"
+<div class='pb-[20px]'>
+    <i class='fa-solid fa-graduation-cap fa-flip-horizontal' style='color: #b8c4d4;'></i>
+    <a class='ml-[10px]' href='index_alumno.php'>Alumnos</a>
+</div>
+";
+
+$link_admin = "<a href='index_admin.php'>Administrador</a>";
+$link_clases = 
+"
+<div class='pb-[20px]'>
+    <i class='fa-solid fa-chalkboard' style='color: #b8c4d4;'></i>
+    <a class='ml-[10px]' href='clases_v.php'>Clases</a>
+</div>
+
+";
 $link_clases_maestro = "<a href='clases_v.php'>Alumnos</a>";
 $link_ver_calificaiones = "<a href='ver_calificaciones.php'>Ver Calificaciones</a>";
 $link_administra_clases = "<a href='administra_clases_v.php'>Administra tus clases</a>";
 $editar_perfil;
 $menu;
 $titulo_menu;
+$menu_administracion;
 
 $html_roll;
 switch($tipo_usuario){
 
     case "admin":
-        $titulo_menu = "ADMINISTRADOR";
-        $html_roll = "<p>Soy administrador</p>";
+        $titulo_menu = "Administrador";
+        $html_roll = "<p>admin</p>";
         $menu = $link_permisos . $link_maestros . $link_alumnos . $link_clases;
         $editar_perfil = "";
+        $menu_administracion="MENU ADMINISTRACIÓN";
     break;
     
     case "alumno":
