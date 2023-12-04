@@ -34,14 +34,25 @@ switch($tipo_usuario){
     break;
 };
 
-// Logica tabla alumnos
-require_once "../controllers/maestros_controller.php";
+
+
+$DNI = $_SESSION["DNI"];
+$nombre = $_SESSION["nombre"];
+
+require_once "../controllers/materias_controller.php";
 require_once "../config/config_alumno.php";
 require_once "../menu/menu.php";
+$maestros_controller = new materias_controller($con);
+$datos_maestros = $maestros_controller->BuscarMaestroMateria($DNI);
+$IdMateria = $datos_maestros[0]['materia'];
+
+// Logica tabla alumnos
+require_once "../controllers/maestros_controller.php";
 $maestros_controller = new maestros_controller($con);
-$datos_maestros = $maestros_controller->LeerMaestros();
-//segunda tabla para leer y poder eliminar
-$datos_maestros_eliminar = $maestros_controller->LeerMaestrosEliminar();
+$datos_maestros = $maestros_controller->LeerMaestroLogin($IdMateria);
+
+// //segunda tabla para leer y poder eliminar
+// $datos_maestros_eliminar = $maestros_controller->LeerMaestrosEliminar();
 $indice=0;
 ?>
 
@@ -74,22 +85,19 @@ $indice=0;
         <a class="flex justify-center" href="../acciones/cerrar_session.php">Cerrar Sesion</a>
     </aside>
         <main class="ml-[20px]">
-            <h1 class="text-2xl font-semibold">Lista de Maestros</h1>  
+            <h1 class="text-2xl font-semibold">Alumnos de la clase <?php echo($nombre) ?></h1>  
         <table class="pl-[10px] shadow-lg shadow-gray-950/50 ">
             <div class="flex justify-between items-center">
-                <h2>Informacion de Maestros</h2>
-                <a class="hover:bg-[#0062cc] cursor-pointer my-[10px] bg-[#007aff] text-white w-[110px] h-[30px] rounded text-xs flex items-center justify-center" href="crear_maestro_v.php">Agregar Maestro</a>
+                <h2>Alumnos de la clase <?php echo($nombre) ?></h2>
             </div >
             <thead>
                 <tr>
                     <!-- <td>#</td> -->
                     <td class="w-[50px] pl-[10px] font-bold text-sm border-[1px] border-solid border-[#c0c5cb]">#</td>
-                    <td class="w-[200px] pl-[10px] font-bold text-sm border-[1px] border-solid border-[#c0c5cb]">Nombre</td>
-                    <td class="w-[200px] pl-[10px] font-bold text-sm border-[1px] border-solid border-[#c0c5cb]">Email</td>
-                    <td class="w-[200px] pl-[10px] font-bold text-sm border-[1px] border-solid border-[#c0c5cb]">Direccion</td>
-                    <td class="w-[200px] pl-[10px] font-bold text-sm border-[1px] border-solid border-[#c0c5cb]">Fec. de Nacimiento</td>
-                    <td class="w-[200px] pl-[10px] font-bold text-sm border-[1px] border-solid border-[#c0c5cb]">Clase Asignada</td>
-                    <td class="w-[100px] pl-[10px] font-bold text-sm border-[1px] border-solid border-[#c0c5cb]">Acciones</td>
+                    <td class="w-[200px] pl-[10px] font-bold text-sm border-[1px] border-solid border-[#c0c5cb]">Nombre de Alumno</td>
+                    <td class="w-[200px] pl-[10px] font-bold text-sm border-[1px] border-solid border-[#c0c5cb]">Calificacion</td>
+                    <td class="w-[200px] pl-[10px] font-bold text-sm border-[1px] border-solid border-[#c0c5cb]">Mensaje</td>
+                    <td class="w-[200px] pl-[10px] font-bold text-sm border-[1px] border-solid border-[#c0c5cb]">Acciones</td>
                 </tr>
             </thead>
             <tbody>
@@ -101,30 +109,14 @@ $indice=0;
                         <td  class=" pl-[10px] border-[1px] border-solid border-[#c0c5cb]"><?php $indice++; echo $indice; ?></td>
 
                         <td class="pl-[10px] border-[1px] border-solid border-[#c0c5cb]"><?= $dato_maestro["nombre"] ?></td>
-                        <td class="pl-[10px] border-[1px] border-solid border-[#c0c5cb]"><?= $dato_maestro["correo"] ?></td>
-                        <td class="pl-[10px] border-[1px] border-solid border-[#c0c5cb]"><?= $dato_maestro["direccion"] ?></td>
-                        <td class="pl-[10px] border-[1px] border-solid border-[#c0c5cb]"><?= $dato_maestro["fecha_nacimiento"] ?></td>
-                        <td class="pl-[10px] border-[1px] border-solid border-[#c0c5cb]"><?= $dato_maestro["materia"] ?></td>
-                        <td class="border-[1px] border-solid border-[#c0c5cb] flex justify-around	">
-                            <form method="post" action="editar_maestros_v.php">
-                                <input 
-                                    name="input_correo"
-                                    value="<?=$dato_maestro["correo"] ?>" 
-                                    type="hidden">
-                                <button><i class="fa-solid fa-pen-to-square" style="color: #48f000;"></i></button>
-                            </form>
+                        <td class="pl-[10px] border-[1px] border-solid border-[#c0c5cb]"><?= $dato_maestro["calificacion"] ?></td>
+                        <td class="pl-[10px] border-[1px] border-solid border-[#c0c5cb]">Mensaje</td>
+                        <td>
+                                <i class="fa-solid fa-pen-to-square" style="color: #48f000;"></i>
+                            
 
                             <!-- hacer un segundo for each para iterar cada elemento de la sgunda lista solo una vez -->
 
-                                <form method="post" action="../acciones/eliminar_maestro_l.php">
-
-                                    <input 
-                                    name="DNI"
-                                    value="<?=$dato_maestro["DNI"] ?>" 
-                                    type="hidden">
-                                    <button><i class="fa-solid fa-trash-can" style="color: #ff0a0a;"></i></button>
-
-                                </form>
 
                         </td>
                     </tr>

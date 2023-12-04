@@ -33,7 +33,7 @@ $link_clases =
 </div>
 
 ";
-$link_clases_maestro = "<a href='clases_v.php'>Alumnos</a>";
+$link_clases_maestro = "<a href='maestro_calificacion_v.php'>Alumnos</a>";
 $link_ver_calificaiones = "<a href='ver_calificaciones.php'>Ver Calificaciones</a>";
 $link_administra_clases = "<a href='administra_clases_v.php'>Administra tus clases</a>";
 $editar_perfil;

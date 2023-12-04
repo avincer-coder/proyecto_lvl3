@@ -1,12 +1,12 @@
 <?php 
 session_start();
 $tipo_usuario = $_SESSION["tipo_usuario"];
-require_once "../controllers/alumnos_controller.php";
+require_once "../controllers/materias_controller.php";
 require_once "../config/config_alumno.php";
 require_once "../menu/menu.php";
 
-$alumnos_controler = new alumnos_controller($con);
-$alumnos_view = $alumnos_controler->LeerClaseAlumnos();
+$materiasContar = new materias_controller($con);
+$datosMateriaContar = $materiasContar->ContarAlumnosMaterias();
 $indice=0;
 ?>
 
@@ -43,39 +43,46 @@ $indice=0;
             <div class="flex justify-between items-center">
                 <h2>Información de Clases</h2>
                 <p><?php echo($editar_perfil)?></p>
-                <a class="hover:bg-[#0062cc] cursor-pointer my-[10px] bg-[#007aff] text-white w-[110px] h-[30px] rounded text-xs flex items-center justify-center" href="">Agregar Clase</a>
+                <a class="hover:bg-[#0062cc] cursor-pointer my-[10px] bg-[#007aff] text-white w-[110px] h-[30px] rounded text-xs flex items-center justify-center" href="agregar_maestro_v.php">Agregar Clase</a>
             </div >
             <thead>
                 <tr>
                     <td class="w-[50px] pl-[10px] font-bold text-sm border-[1px] border-solid border-[#c0c5cb]">#</td>
-                    <td class="w-[280px] pl-[10px] font-bold text-sm border-[1px] border-solid border-[#c0c5cb]">Nombre</td>
-                    <td class="w-[280px] pl-[10px] font-bold text-sm border-[1px] border-solid border-[#c0c5cb]">Calificacion</td>
-                    <td class="w-[280px] pl-[10px] font-bold text-sm border-[1px] border-solid border-[#c0c5cb]">Mensajes</td>
+                    <td class="w-[280px] pl-[10px] font-bold text-sm border-[1px] border-solid border-[#c0c5cb]">Clase</td>
+                    <td class="w-[280px] pl-[10px] font-bold text-sm border-[1px] border-solid border-[#c0c5cb]">Maestro</td>
+                    <td class="w-[280px] pl-[10px] font-bold text-sm border-[1px] border-solid border-[#c0c5cb]">Alumnos Inscritos</td>
                     <td class="w-[280px] pl-[10px] font-bold text-sm border-[1px] border-solid border-[#c0c5cb]">Acciones</td>
                 </tr>
             </thead>
             <tbody>
-                <?php foreach($alumnos_view as $dato_alumno):?>
+                <?php foreach($datosMateriaContar as $dato_alumno):?>
                     <!-- Copiar y pegar tr y td para la tabla y crear variable indice en la logica en cero 0 -->
                     <tr class="<?= $indice % 2 === 0 ? 'bg-zinc-200 ' : 'bg-white' ?>">
 
                         <td  class=" pl-[10px] border-[1px] border-solid border-[#c0c5cb]"><?php $indice++; echo $indice; ?></td>
 
-                        <td  class=" pl-[10px] border-[1px] border-solid border-[#c0c5cb]"><?= $dato_alumno["nombre"] ?></td>
-                        <td  class=" pl-[10px] border-[1px] border-solid border-[#c0c5cb]"><?= $dato_alumno["calificacion"] ?></td>
-                        <td  class=" pl-[10px] border-[1px] border-solid border-[#c0c5cb]"><?= $dato_alumno["mensaje"] ?></td>
+                        <td  class=" pl-[10px] border-[1px] border-solid border-[#c0c5cb]"><?= $dato_alumno["nombre_materia"] ?></td>
+                        <td  class=" pl-[10px] border-[1px] border-solid border-[#c0c5cb]"><?= $dato_alumno["nombre_maestro"] ?></td>
+                        <td  class=" pl-[10px] border-[1px] border-solid border-[#c0c5cb]"><?= $dato_alumno["cantidad_alumnos"] ?></td>
                         <td class="flex justify-center pl-[10px] border-[1px] border-solid border-[#c0c5cb]">
-                            <form class="mr-[50px]" method="post" action="editar_alumnos_v.php">
+                            <form class="mr-[50px]" method="post" action="editar_clase_v.php">
+                                
                                 <input 
-                                    name="input_correo"
-                                    value="<?=$dato_alumno["correo"] ?>" 
+                                    name="eliminar_clase"
+                                    value="<?=$dato_alumno["id_maestroMateria"] ?>" 
+                                    type="hidden">
+                                <input 
+
+                                    name="nombre_materia"
+                                    value="<?=$dato_alumno["nombre_materia"] ?>" 
                                     type="hidden">
                                 <button><i class="fa-solid fa-pen-to-square" style="color: #48f000;"></i></button>
+                                
                             </form>
                             <form method="post" action="../acciones/eliminar_clase.php">
                                 <input 
-                                    name="input_correo"
-                                    value="<?=$dato_alumno["correo"] ?>" 
+                                    name="eliminar_clase"
+                                    value="<?=$dato_alumno["id_maestroMateria"] ?>" 
                                     type="hidden">
                                 <button><i class="fa-solid fa-trash-can" style="color: #ff0a0a;"></i></button>
                             </form>

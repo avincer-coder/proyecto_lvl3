@@ -1,7 +1,10 @@
 <?php 
 session_start();
 $tipo_usuario = $_SESSION["tipo_usuario"];
-
+require_once "../controllers/materias_controller.php";
+require_once "../config/config_admin.php";
+$controller_materias = new materias_controller($con);
+$LeerMaterias = $controller_materias->LeerMaterias();
 $html_roll;
 switch($tipo_usuario){
 
@@ -38,6 +41,9 @@ switch($tipo_usuario){
 
             <h1 class="text-2xl font-semibold mb-[20px]">Agregar Maestro</h1>
 
+            <label class="font-bold text-sm" for="DNI">DNI</label>
+            <input class="border-[1px] border-solid border-[#c0c5cb] rounded pl-[5px] text-sm mb-[15px]" name="DNI" id="DNI" type="number">
+
             <label class="font-bold text-sm" for="email">Correo Electronico</label>
             <input class="border-[1px] border-solid border-[#c0c5cb] rounded pl-[5px] text-sm mb-[15px]" name="email" id="email" type="email">
 
@@ -54,7 +60,20 @@ switch($tipo_usuario){
             <input class="border-[1px] border-solid border-[#c0c5cb] rounded pl-[5px] text-sm mb-[15px]" name="fecha" id="fecha" type="date">
 
             <label class="font-bold text-sm" for="clase">Clase Asignada</label>
-            <input class="border-[1px] border-solid border-[#c0c5cb] rounded pl-[5px] text-sm mb-[15px]" name="clase" id="clase" type="text">
+            <select class="w-[300px] border-[1px] border-solid border-[#c0c5cb] rounded" name="clase" id="clase">
+                        <?php foreach($LeerMaterias as $materia):?>
+                        <option 
+                            value="<?= $materia["ID"] ?>">
+                            <?= $materia["materia"] ?>
+                        </option>
+                        <?php endforeach;?>
+            </select>
+
+
+
+
+            <label class="font-bold text-sm" for="contraseña">Contraseña</label>
+            <input class="border-[1px] border-solid border-[#c0c5cb] rounded pl-[5px] text-sm mb-[15px]" value="" name="contraseña" id="contraseña" type="password">
 
             <div class="flex justify-end">
                 <a class="flex items-center justify-center my-[10px] hover:bg-[#404347] cursor-pointer bg-[#6c747f] text-white w-[50px] h-[30px] rounded text-xs mr-[10px]" href="../views/maestros_v.php">Close</a>

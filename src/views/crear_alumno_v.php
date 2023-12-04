@@ -57,6 +57,10 @@ switch($tipo_usuario){
 
             <label class="font-bold text-sm" for="fecha">Fecha de nacimiento</label>
             <input class="border-[1px] border-solid border-[#c0c5cb] rounded pl-[5px]"  name="fecha" id="fecha" type="date">
+            
+            <label class="font-bold text-sm" for="contraseña">Contraseña</label>
+            <input class="border-[1px] border-solid border-[#c0c5cb] rounded pl-[5px]"  name="contraseña" id="contraseña" type="text">
+            
             <div class="flex justify-end">
                 <a class="flex items-center justify-center my-[10px] hover:bg-[#404347] cursor-pointer bg-[#6c747f] text-white w-[50px] h-[30px] rounded text-xs mr-[10px]" href="../views/index_alumno.php">Close</a>
                 

@@ -12,10 +12,12 @@ if (isset($_POST["correo"])) {
         if ($validacionContraseña) {
             $roll = $usuario_prueba->ObtenerRoll($correo, $password);
             $nombre = $usuario_prueba->ObtenerNombre($correo, $password);
+            $DNI = $usuario_prueba->ObtenerDNI($correo, $password);
             session_start();
             $_SESSION["nombre"] = $nombre;
             $_SESSION["tipo_usuario"] = $roll;
             $_SESSION["correo"] = $correo;
+            $_SESSION["DNI"] = $DNI;
           
             header("location:../views/dashboard.php");
 

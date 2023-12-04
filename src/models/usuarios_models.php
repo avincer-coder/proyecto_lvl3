@@ -35,11 +35,9 @@
 
         public function CrearUsuarios(){}
         
-        public function EditarUsuarios($correo,$nombre,$password,$apellido,$direccion,$fecha_nacimiento){
-            $query = $this->con->prepare("UPDATE usuarios
-            SET correo=?, nombre=?, password=?, apellido=?, direccion=?, fecha_nacimiento=? 
-            WHERE correo=?");
-            $query->execute(array($correo,$nombre,$password,$apellido,$direccion,$fecha_nacimiento,$correo));
+        public function EditarUsuarios($DNI, $nombre,$password,$apellido,$direccion,$fecha_nacimiento){
+            $query = $this->con->prepare("UPDATE `usuarios` SET `nombre` = ?, `password` = ?, `apellido` = ?, `direccion` = ?, `fecha_nacimiento` = ? WHERE `usuarios`.`DNI` = ?;");
+            $query->execute(array($nombre, $password, $apellido, $direccion, $fecha_nacimiento, $DNI));
             $Data = $query->rowCount();
             return $Data;
         }
@@ -52,6 +50,16 @@
             $query->execute();
             $Data = $query->fetchAll();
             return $Data;
+        }
+
+        public function EliminarUsuario($DNI)
+        {
+            $query = $this->con->prepare("DELETE FROM usuarios
+            WHERE DNI=:DNI;");
+            $query -> bindParam(":DNI",$DNI);
+            $query->execute();
+            $DataAlumnos = $query->rowCount();
+            return $DataAlumnos;
         }
     };
 ?>

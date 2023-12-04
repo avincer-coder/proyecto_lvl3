@@ -7,14 +7,17 @@ $nombre = $_SESSION['nombre'];
 
 //Bloquear esta pagina 
 require_once "../menu/menu.php";
+require_once "../controllers/usuarios_controler.php";
 require_once "../controllers/alumnos_controller.php";
 require_once "../controllers/materias_controller.php";
 require_once "../config/config_admin.php";
+$usuariosController = new usuarios_controller($con);
 $controller_alumno = new alumnos_controller($con);
 $controller_materias = new materias_controller($con);
+$LeerMateriasMaestro = $controller_materias->LeerMateriasMaestro();
 $LeerMaterias = $controller_materias->LeerMaterias();
 $Materias = $controller_alumno->BuscarMaterias($correo);
-$data_alumno = $controller_alumno->BuscarAlumno($correo);
+$data_alumno = $usuariosController->BuscarUsuario($correo);
 // Aqui si no hay materias produce error
 
 $indice_materia = 0;
@@ -29,9 +32,9 @@ $id_alumno = $data_alumno[0]['DNI'];
 // 1 o mayor a 1 es igual a que ya esta
 $MateriasFaltantes = array();
 
-for ($y=0; $y < count($LeerMaterias); $y++) { 
+for ($y=0; $y < count($LeerMateriasMaestro); $y++) { 
 
-    $MateriaActual = $LeerMaterias[$y]['materia'];
+    $MateriaActual = $LeerMateriasMaestro[$y]['materia'];
     $Encontrada = false;
 
     for ($i=0; $i < count($Materias); $i++) { 
@@ -45,7 +48,7 @@ for ($y=0; $y < count($LeerMaterias); $y++) {
     if(!$Encontrada){
 
             $MateriasFaltantes[]=array(
-                'id'=>$LeerMaterias[$y]['ID'],
+                'id'=>$LeerMateriasMaestro[$y]['materia_ID'],
                 'materia'=>$MateriaActual
             );
 
@@ -113,6 +116,7 @@ for ($y=0; $y < count($LeerMaterias); $y++) {
                         <td class=" pl-[10px] border-[1px] border-solid border-[#c0c5cb]"><?php $indice_materia++; echo $indice_materia; ?></td>
                         <td class=" pl-[10px] border-[1px] border-solid border-[#c0c5cb]"><?= $dato_alumno["nombre_materia"] ?></td>
                         <td class="flex justify-center pl-[10px] border-[1px] border-solid border-[#c0c5cb]">
+
                             <form action="../acciones/eliminar_materia_l.php" method="post">
                                 <input name="id_materia" 
                                 value="<?= $dato_alumno["am_id"] ?>" type="hidden">
@@ -120,6 +124,7 @@ for ($y=0; $y < count($LeerMaterias); $y++) {
                                     <i class="fa-solid fa-file-circle-minus" style="color: #ff0000;"></i>
                                 </button>
                             </form>
+
                         </td>
                     </tr>
                 <?php endforeach;?>
@@ -140,7 +145,7 @@ for ($y=0; $y < count($LeerMaterias); $y++) {
                     <p>Ya estas inscrito a todas las clases</p>    
                 <?php }else{ ?>
                     <form class="w-[300px]" action="../acciones/agregar_clase_l.php" method="post">
-                        <select class="w-[300px] border-[1px] border-solid border-[#c0c5cb] rounded" size="<?php echo(count($MateriasFaltantes))?>" name="clases" id="">
+                        <select class="w-[300px] border-[1px] border-solid border-[#c0c5cb] rounded" size="4" name="clases" id="">
                         <?php foreach($MateriasFaltantes as $materia):?>
                         <option 
                             value="<?= $materia["id"] ?>">

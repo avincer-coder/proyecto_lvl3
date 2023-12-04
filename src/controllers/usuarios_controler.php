@@ -57,21 +57,43 @@ class usuarios_controller{
         }
     }
 
+    public function ObtenerDNI($correo, $contraseña){
+        $UnUsuario = new usuarios_models();
+        $respuesta = $UnUsuario->LeerContraseña($correo);
+        
+        foreach($respuesta as $cada_usuario){
+            if ($contraseña==$cada_usuario["password"]) {
+                $nombre = $cada_usuario["DNI"];
+                return $nombre;
+            }else{
+                return 0;
+            }
+        }
+    }
+
     public function CrearUsuarios(){}
     
-    public function EditarUsuario($correo,$nombre,$password,$apellido,$direccion,$fecha_nacimiento)
+    public function EditarUsuario($DNI, $nombre,$password,$apellido,$direccion,$fecha_nacimiento)
     {
         $UnUsuario = new usuarios_models();
-        $actualiazr_alumno = $UnUsuario->EditarUsuarios($correo,$nombre,$password,$apellido,$direccion,$fecha_nacimiento);
+        $actualiazr_alumno = $UnUsuario->EditarUsuarios($DNI, $nombre,$password,$apellido,$direccion,$fecha_nacimiento);
         echo($actualiazr_alumno);
-        echo($correo);
     }
+
+    
 
     public function BuscarUsuario($correo)
     {
         $usuario = new usuarios_models();
         $Data = $usuario->BuscarUsuario($correo);
         return $Data;
+    }
+
+    public function EliminarUsuario($DNI)
+    {
+        $usuario = new usuarios_models();
+
+        $usuario->EliminarUsuario($DNI);
     }
     
 }

@@ -5,7 +5,11 @@ $controller_maestro = new maestros_controller($con);
 $correo = $_POST["input_correo"];
 $Maestro = $controller_maestro->BuscarMaestro($correo);
 
-
+require_once "../controllers/materias_controller.php";
+require_once "../config/config_admin.php";
+$controller_materias = new materias_controller($con);
+$LeerMaterias = $controller_materias->LeerMaterias();
+// Agr
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,23 +25,39 @@ $Maestro = $controller_maestro->BuscarMaestro($correo);
 
             <h1 class="text-2xl font-semibold mb-[20px]">Editar Maestro</h1>
 
+
+            <input class="border-[1px] border-solid border-[#c0c5cb] rounded pl-[5px] text-sm mb-[15px]" value="<?php echo($Maestro[0]["DNI"]); ?>" name="DNI" id="DNI" type="hidden">
+
             <label class="font-bold text-sm" for="email">Correo Electronico</label>
-            <input class="border-[1px] border-solid border-[#c0c5cb] rounded pl-[5px] text-sm mb-[15px]" value="<?php echo($Maestro[0]["email"]); ?>" name="email" id="email" type="email">
+            <input class="border-[1px] border-solid border-[#c0c5cb] rounded pl-[5px] text-sm mb-[15px]" value="<?php echo($Maestro[0]["correo"]); ?>" name="correo" id="email" type="email" readonly>
 
             <label class="font-bold text-sm" for="nombre">Nombre(s)</label>
             <input class="border-[1px] border-solid border-[#c0c5cb] rounded pl-[5px] text-sm mb-[15px]" value="<?php echo($Maestro[0]["nombre"]); ?>" name="nombre" id="nombre" type="text">
             
             <label class="font-bold text-sm" for="apellido">Apellido(s)</label>
-            <input class="border-[1px] border-solid border-[#c0c5cb] rounded pl-[5px] text-sm mb-[15px]" name="apellido" id="apellido" type="text">
+            <input class="border-[1px] border-solid border-[#c0c5cb] rounded pl-[5px] text-sm mb-[15px]" name="apellido" id="apellido" type="text" value="<?php echo($Maestro[0]["apellido"]); ?>">
 
             <label class="font-bold text-sm" for="direccion">Dirección</label>
             <input class="border-[1px] border-solid border-[#c0c5cb] rounded pl-[5px] text-sm mb-[15px]" value="<?php echo($Maestro[0]["direccion"]); ?>" name="direccion" id="direccion" type="text">
 
             <label class="font-bold text-sm" for="fecha">Fecha de Nacimiento</label>
-            <input class="border-[1px] border-solid border-[#c0c5cb] rounded pl-[5px] text-sm mb-[15px]" value="<?php echo($Maestro[0]["fecha"]); ?>" name="fecha" id="fecha" type="date">
+            <input class="border-[1px] border-solid border-[#c0c5cb] rounded pl-[5px] text-sm mb-[15px]" value="<?php echo($Maestro[0]["fecha_nacimiento"]); ?>" name="fecha_nacimiento" id="fecha" type="date">
 
             <label class="font-bold text-sm" for="clase">Clase Asignada</label>
-            <input class="border-[1px] border-solid border-[#c0c5cb] rounded pl-[5px] text-sm mb-[15px]" value="<?php echo($Maestro[0]["clase"]); ?>" name="clase" id="clase" type="text">
+            <select class="w-[300px] border-[1px] border-solid border-[#c0c5cb] rounded" name="clase" id="clase">
+                        <?php foreach($LeerMaterias as $materia):?>
+                        <option 
+                            value="<?= $materia["ID"] ?>">
+                            <?= $materia["materia"] ?>
+                        </option>
+                        <?php endforeach;?>
+            </select>
+
+
+
+
+            <label class="font-bold text-sm" for="contraseña">Contraseña</label>
+            <input class="border-[1px] border-solid border-[#c0c5cb] rounded pl-[5px] text-sm mb-[15px]" value="<?php echo($Maestro[0]["password"]); ?>" name="password" id="contraseña" type="text">
 
             <div class="flex justify-end">
                 <a class="flex items-center justify-center my-[10px] hover:bg-[#404347] cursor-pointer bg-[#6c747f] text-white w-[50px] h-[30px] rounded text-xs mr-[10px]" href="../views/maestros_v.php">Close</a>

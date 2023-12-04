@@ -32,9 +32,8 @@ class alumnos_controller{
         $this->alumno->EliminarAlumnos($correo);
     }
     
-    public function AgregarAlumnos($dni,$nombre, $apellido, $correo,$direccion,$fecha)
-    {
-        $this->alumno->AgregarAlumnoso($dni,$nombre, $apellido, $correo,$direccion,$fecha);
+    public function AgregarAlumno($DNI, $nombre,$email,$direccion, $fecha,  $password, $apellido){
+        $this->alumno->AgregarAlumno($DNI, $nombre,$email,$direccion, $fecha, $password, $apellido);
     }
     
     public function EditarAlumnos($dni,$nombre, $apellido, $correo,$direccion,$fecha)

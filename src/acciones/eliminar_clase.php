@@ -1,10 +1,10 @@
 <?php 
-$correo = $_POST["input_correo"];
-echo($correo);
-// require_once "../controllers/alumnos_controller.php";
-// require_once "../config/config_admin.php";
-// $controller_alumno = new alumnos_controller($con);
-// $Eliminar = $controller_alumno->EliminarMateria($id);
-// header("location:../views/administra_clases_v.php");
+$id = $_POST["eliminar_clase"];
+require_once "../controllers/clase_controller.php";
+require_once "../config/config_admin.php";
+$clase = new clase_controller($con);
+$Eliminar = $clase->EliminarClase($id);
+echo($id);
+header("location:../views/clases_v.php");
 // revisar encaso de no seleccionar nada
 ?>

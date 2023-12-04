@@ -1,15 +1,15 @@
 <?php 
-$dni = $_POST["dni"];
+$DNI = $_POST["DNI"];
 $correo = $_POST["correo"];
 $nombre = $_POST["nombre"];
 $apellido = $_POST["apellido"];
 $direccion = $_POST["direccion"];
 $fecha = $_POST["fecha"];
+$password = $_POST["contraseña"];
 
-
-require_once "../controllers/alumnos_controller.php";
+require_once "../controllers/usuarios_controler.php";
 require_once "../config/config_admin.php";
-$Alumnos_controller = new alumnos_controller($con);
-$Alumnos_controller->EditarAlumnos($dni,$nombre,$apellido, $correo, $direccion,$fecha);
+$usuarios_controller = new usuarios_controller($con);
+$usuarios_controller->EditarUsuario($DNI, $nombre,$password,$apellido,$direccion,$fecha);
 header("location:../views/index_admin.php")
 ?>

@@ -1,10 +1,10 @@
 <?php 
-require_once "../controllers/alumnos_controller.php";
+require_once "../controllers/usuarios_controler.php";
 require_once "../config/config_alumno.php";
-$controller_alumno = new alumnos_controller($con);
+$controller_usuarios = new usuarios_controller($con);
 $correo = $_POST["input_correo"];
-$Alumno = $controller_alumno->BuscarAlumno($correo);
-
+$Alumno = $controller_usuarios->BuscarUsuario($correo);
+// Correguir el DNI para poder editarlo sin que causeconflictos conla logica
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,10 +21,10 @@ $Alumno = $controller_alumno->BuscarAlumno($correo);
             <h1 class="text-2xl font-semibold mb-[20px]">Editar Alumno</h1>
 
             <label class="font-bold text-sm" for="dni">DNI</label>
-            <input class="border-[1px] border-solid border-[#c0c5cb] rounded pl-[5px] text-sm mb-[15px]" value="<?php echo($Alumno[0]["DNI"]); ?>" name="dni" id="dni" type="number">
+            <input class="border-[1px] border-solid border-[#c0c5cb] rounded pl-[5px] text-sm mb-[15px]" value="<?php echo($Alumno[0]["DNI"]); ?>" name="DNI" id="dni" type="number" readonly>
 
             <label class="font-bold text-sm" for="correo">Correo Electronico</label>
-            <input class="border-[1px] border-solid border-[#c0c5cb] rounded pl-[5px] text-sm mb-[15px]" value="<?php echo($Alumno[0]["correo"]); ?>" name="correo" id="correo" type="email">
+            <input class="border-[1px] border-solid border-[#c0c5cb] rounded pl-[5px] text-sm mb-[15px]" value="<?php echo($Alumno[0]["correo"]); ?>" name="correo" id="correo" type="email" readonly>
             
             <label class="font-bold text-sm" for="nombre">Nombre(s)</label>
             <input class="border-[1px] border-solid border-[#c0c5cb] rounded pl-[5px] text-sm mb-[15px]" value="<?php echo($Alumno[0]["nombre"]); ?>" name="nombre" id="nombre" type="text">
@@ -36,8 +36,9 @@ $Alumno = $controller_alumno->BuscarAlumno($correo);
             <input class="border-[1px] border-solid border-[#c0c5cb] rounded pl-[5px] text-sm mb-[15px]" value="<?php echo($Alumno[0]["direccion"]); ?>" name="direccion" id="direccion" type="text">
 
             <label class="font-bold text-sm" for="fecha">Fecha de nacimiento</label>
-            <input class="border-[1px] border-solid border-[#c0c5cb] rounded pl-[5px] text-sm mb-[15px]" value="<?php echo($Alumno[0]["fecha"]); ?>" name="fecha" id="fecha" type="date">
+            <input class="border-[1px] border-solid border-[#c0c5cb] rounded pl-[5px] text-sm mb-[15px]" value="<?php echo($Alumno[0]["fecha_nacimiento"]); ?>" name="fecha" id="fecha" type="date">
             
+            <input class="border-[1px] border-solid border-[#c0c5cb] rounded pl-[5px] text-sm mb-[15px]" value="<?php echo($Alumno[0]["password"]); ?>" name="contraseña"  type="hidden">
             <!-- <input type="submit"> -->
 
             <div class="flex justify-end">

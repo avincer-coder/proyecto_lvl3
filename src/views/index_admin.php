@@ -37,7 +37,7 @@ switch($tipo_usuario){
 
 // Logica tabla alumnos
 require_once "../controllers/alumnos_controller.php";
-require_once "../config/config_alumno.php";
+require_once "../config/config_admin.php";
 require_once "../menu/menu.php";
 $alumnos_controller = new alumnos_controller($con);
 $datos_alumnos = $alumnos_controller->LeerAlumnos();
@@ -119,7 +119,7 @@ $indice=0;
                         <td  class="pl-[10px] border-[1px] border-solid border-[#c0c5cb]"><?= $dato_alumno["nombre"] ?></td>
                         <td  class="pl-[10px] border-[1px] border-solid border-[#c0c5cb]"><?= $dato_alumno["correo"] ?></td>
                         <td  class="pl-[10px] border-[1px] border-solid border-[#c0c5cb]"><?= $dato_alumno["direccion"] ?></td>
-                        <td  class="pl-[10px] border-[1px] border-solid border-[#c0c5cb]"><?= $dato_alumno["fecha"] ?></td>
+                        <td  class="pl-[10px] border-[1px] border-solid border-[#c0c5cb]"><?= $dato_alumno["fecha_nacimiento"] ?></td>
                         <td  class="flex justify-center pl-[10px] border-[1px] border-solid border-[#c0c5cb]">
                             <form class="mr-[50px]" method="post" action="editar_alumnos_v.php">
                                 <input 
@@ -128,10 +128,10 @@ $indice=0;
                                     type="hidden">
                                 <button><i class="fa-solid fa-pen-to-square" style="color: #48f000;"></i></button>
                             </form>
-                            <form method="post" action="eliminar_alumnos.php">
+                            <form method="post" action="../acciones/eliminar_alumnos.php">
                                 <input 
-                                    name="input_correo"
-                                    value="<?=$dato_alumno["correo"] ?>" 
+                                    name="id_alumno"
+                                    value="<?=$dato_alumno["DNI"] ?>" 
                                     type="hidden">
                                 <button><i class="fa-solid fa-trash-can" style="color: #ff0a0a;"></i></button>
                             </form>
